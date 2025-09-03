@@ -23,7 +23,7 @@ for (const file of files) {
     const match = Array.from(src.matchAll(/(frontend|backend|database|tool)\_(.+)\.svg/ig))[0];
     const [_, group, filename] = match || [];
 
-
+    
     const data={src,filename}
 
     if(group==="frontend"){
@@ -151,7 +151,7 @@ for (const file of files) {
         }
     }
 
-    /* @keyframes positive_rotation {
+    @keyframes positive_rotation {
         100%{
             transform: rotate(360deg);
         }
@@ -161,7 +161,7 @@ for (const file of files) {
         100%{
             transform: rotate(-360deg);
         }
-    } */
+    }
 
     @media screen and (width>=64rem){
        
