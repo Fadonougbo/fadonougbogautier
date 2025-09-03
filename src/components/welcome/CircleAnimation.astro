@@ -1,0 +1,261 @@
+---
+
+//Get svg files
+const files= Object.values<{default:{src:string}}>(import.meta.glob(['../../svg/frontend_*.svg','../../svg/backend_*.svg','../../svg/database_*.svg','../../svg/tool_*.svg'],{eager:true}))
+
+
+
+const frontend=[]
+
+const backend=[]
+
+const database=[]
+
+const tool=[]
+
+
+
+for (const file of files) {
+
+    const src=file?.default.src
+
+    //Get svg path information
+    const [_,group,filename]=src.matchAll(/(frontend|backend|database|tool)\_(.+)\.svg/ig).toArray()[0]
+
+    const data={src,filename}
+
+    if(group==="frontend"){
+        frontend.push(data)
+    }else if(group==="database"){
+        database.push(data)
+    }
+    else if(group==="tool"){
+        tool.push(data)
+    }
+    else {
+        backend.push(data)
+    }
+}
+
+
+---
+
+<style>
+
+    #circle_container{
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        min-height: 14rem;
+
+     
+    }
+
+    .circle{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        border-radius: 100%;
+        border:double 0.12rem  #4f39f657;
+
+        .circle_item{
+            display: block;
+            position: absolute;
+            
+        }
+
+    }
+    
+    .circleA{
+        --size:4rem;
+        --y:calc(var(--size)/2);
+        height: var(--size);
+        width: var(--size);
+        z-index: 5;
+        filter: grayscale(100);
+        animation: negative_rotation 60s linear infinite;
+
+
+        &:hover{
+            filter: grayscale(0);
+        }
+
+        .circle_item {
+            height: 1.8rem;
+            width: 1.8rem;
+            transform:rotate(var(--deg)) translateY(var(--y)) ;
+        }
+
+    }
+
+    .circleB{
+        --size:8.5rem;
+        --y:calc(var(--size)/2);
+        height: var(--size);
+        width: var(--size);
+        z-index: 4;
+        filter: grayscale(100);
+        animation: positive_rotation 60s linear infinite;
+
+        &:hover{
+            filter: grayscale(0);
+        }
+
+        .circle_item {
+            height: 1.9rem;
+            width: 1.9rem;
+            transform:rotate(var(--deg)) translateY(var(--y)) ;
+        }
+    }
+
+    .circleC{
+        --size:12.5rem;
+        --y:calc(var(--size)/2);
+        height: var(--size);
+        width: var(--size);
+        z-index: 3;
+        filter: grayscale(100);
+        animation: negative_rotation 60s linear infinite;
+
+        &:hover{
+            filter: grayscale(0);
+        }
+
+        .circle_item {
+            height: 2rem;
+            width: 2rem;
+            transform:rotate(var(--deg)) translateY(var(--y)) ;
+        }
+    }
+
+    .circleD{
+        --size:16.5rem;
+        --y:calc(var(--size)/2);
+        height: var(--size);
+        width: var(--size);
+        z-index: 2;
+        filter: grayscale(100);
+        animation: positive_rotation 60s linear infinite;
+        &:hover{
+            filter: grayscale(0);
+        }
+
+        .circle_item {
+            height: 2.1rem;
+            width: 2.1rem;
+            transform:rotate(var(--deg)) translateY(var(--y)) ;
+        }
+    }
+
+    /* @keyframes positive_rotation {
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes negative_rotation {
+        100%{
+            transform: rotate(-360deg);
+        }
+    } */
+
+    @media screen and (width>=64rem){
+       
+        #circle_container{
+            min-height: 19rem;
+        }
+
+        .circleA{
+            --size:6rem;
+          
+        }
+
+        .circleB{
+            --size:10.5rem;
+           
+        }
+
+        .circleC{
+            --size:14.5rem;
+            
+        }
+
+        .circleD{
+            --size:18.5rem;
+        }
+
+    }
+
+</style>
+
+<script>
+
+    const circleItems=document.querySelectorAll<HTMLImageElement>('.circle_item')
+
+    for (const item of circleItems) {
+        const deg=item.getAttribute('data-deg')
+
+        if(deg){
+            item.style.setProperty('--deg',`${deg}deg`)
+        }
+        
+    }
+
+</script>
+
+<section  id="circle_container" >
+
+            <div class="circleA circle" >
+
+                {
+                    tool.map((item,index,currentArray)=>{
+                        const deg=360/currentArray.length
+                        return <img src={item.src} alt={item.filename} title={item.filename} data-deg={deg*index}
+                            class="circle_item"
+                          />
+                    })
+                }
+
+            </div>
+   
+             <div class="circleB circle" >
+
+                {
+                    database.map((item,index,currentArray)=>{
+                        const deg=360/currentArray.length
+                        return <img src={item.src} alt={item.filename} title={item.filename} data-deg={deg*index}
+                            class="circle_item"
+                          />
+                    })
+                }
+
+            </div>
+
+            <div class="circleC circle" >
+
+                {
+                    backend.map((item,index,currentArray)=>{
+                        const deg=360/currentArray.length
+                        return <img src={item.src} alt={item.filename} title={item.filename} data-deg={deg*index}
+                            class="circle_item"
+                          />
+                    })
+                }
+
+            </div>
+
+            <div class="circleD circle" >
+
+                {
+                    frontend.map((item,index,currentArray)=>{
+                        const deg=360/currentArray.length
+                        return <img src={item.src} alt={item.filename}  data-deg={deg*index}
+                            class="circle_item"
+                          />
+                    })
+                }
+
+            </div>
+</section>
