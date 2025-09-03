@@ -2,26 +2,26 @@
 const isHomePage=   Astro.originPathname==="/"
 const isAboutPage=  Astro.originPathname==="/about/"
 ---
-<header class="flex justify-center px-3 py-1 border-b-2 border-b-indigo-50 h-14 text-lg" > 
+<header class="flex justify-center px-3 py-1 border-b-2 border-b-indigo-50 h-20 lg:text-lg" > 
 
-    <nav class="hidden sm:block h-full" >
+    <nav class="sm:block h-full" >
 
-        <ul class="flex space-x-10 h-full capitalize" >
+        <ul class="gap-2 space-x-2 md:space-x-10 grid grid-cols-3 md:grid-cols-4 h-full capitalize" >
 
-            <li  class:list={["flex items-center px-2 h-full  decoration-2 decoration-indigo-700 decoration-wavy  underline-offset-4",{"underline font-semibold":isHomePage,"text-gray-600 hover:text-inherit":!isHomePage} ]} >
+            <li  class:list={["flex items-center px-1 h-full  decoration-2 decoration-indigo-700 decoration-wavy  underline-offset-4",{"underline font-semibold":isHomePage,"text-gray-600 hover:text-inherit":!isHomePage} ]} >
                 <a href="/fadonougbogautier" class="inline-block">Accueil</a>
             </li>
 
-            <li  class="flex items-center px-2 h-full text-gray-600 hover:text-inherit">
+            <li  class="flex items-center px-1 h-full text-gray-600 hover:text-inherit">
                 <a href="/fadonougbogautier/#projects">Projets</a>
             </li>
 
-            <li class:list={["flex items-center px-2 h-full  decoration-2 decoration-indigo-700 decoration-wavy  underline-offset-4",{"underline font-semibold":isAboutPage,"text-gray-600 hover:text-inherit":!isAboutPage} ]}>
+            <li class:list={["flex items-center px-1 h-full  decoration-2 decoration-indigo-700 decoration-wavy  underline-offset-4",{"underline font-semibold":isAboutPage,"text-gray-600 hover:text-inherit":!isAboutPage} ]}>
                 <a href="/fadonougbogautier/about">À propos</a>
                 
             </li>
 
-            <li class="flex items-center px-2 h-full text-gray-600 hover:text-inherit">
+            <li class="flex items-center px-1 h-full text-gray-600 hover:text-inherit">
                 <a href="/fadonougbogautier/#contact">Contact</a>
                 
             </li>
