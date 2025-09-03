@@ -14,5 +14,7 @@ export default defineConfig({
   },
   image:{
     responsiveStyles:true
-  }
+  },
+  site:"https://fadonougbo.github.io",
+  base:"/fadonougbogautier"
 });
