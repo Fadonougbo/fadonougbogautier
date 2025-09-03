@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "packageManager":"pnpm@10.13.1",
   "dependencies": {
     "@astrojs/react": "^4.3.0",
     "@tailwindcss/vite": "^4.1.12",
