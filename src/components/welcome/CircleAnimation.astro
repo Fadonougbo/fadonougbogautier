@@ -19,7 +19,7 @@ for (const file of files) {
 
     const src=file?.default.src
 
-    //Get svg path information
+    //Get svg path informations
     const match = Array.from(src.matchAll(/(frontend|backend|database|tool)\_(.+)\.svg/ig))[0];
     const [_, group, filename] = match || [];
 
